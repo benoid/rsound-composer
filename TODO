@@ -5,5 +5,5 @@ note duration ties
 more argchecks
 more tests
 
-make a submodule
+make a module
 soundfont (sf2, sfz) parser
