@@ -1,5 +1,6 @@
 double sharps/flats
 harmonies
+note duration ties
 argchecks
 more tests
 
