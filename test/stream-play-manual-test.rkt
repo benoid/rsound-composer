@@ -2,8 +2,6 @@
 
 (require "../composer-rsound.rkt")
 
-(provide (all-defined-out))
-
 (define scr
   (score
     (section 
