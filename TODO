@@ -2,3 +2,5 @@ double sharps/flats
 harmonies
 argchecks
 more tests
+
+soundfont (sf2, sfz) parser
