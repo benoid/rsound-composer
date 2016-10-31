@@ -6,6 +6,7 @@
   (score
     (section 
       (time-signature 4 4) 
+      #:assert-time-sig #t
       (key-signature "") 
       #:tempo 120
       (instrument-part

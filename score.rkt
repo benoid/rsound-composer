@@ -5,6 +5,7 @@
          "note.rkt")
 (provide (all-defined-out))
 
+;; Write test for guard
 (struct time-signature [beats-per-measure
                         type-of-beat]
   #:guard (lambda (beats-per-measure
@@ -33,6 +34,8 @@
 (struct struct-section 
   [time-sig key-sig tempo instrument-part-list])
 
+;; Write test for guard
+;; Make key-sig a keyword
 (define (section time-sig 
                  #:assert-time-sig [assert-time-sig? #t] 
                  key-sig 
@@ -65,6 +68,7 @@
 (define (instrument-part instrument . measures)
   (struct-instrument-part instrument measures))
 
+;; Needs test
 (define (instr-part-is-valid? instr-part time-sig)
   (cond ((not (instrument-part? instr-part)) 
          (error 
@@ -78,7 +82,7 @@
                   (instr-part-measure-list instr-part)))))
 
 
-; Measure
+;; Write test for guard
 (struct struct-measure [notes]
   #:guard (lambda (notes name)
             (if (list? notes)
@@ -90,6 +94,7 @@
 (define (measure . notes)
   (struct-measure notes))
 
+;; Needs test
 (define (measure-is-valid? meas time-sig)
   (cond ((not (measure? meas)) 
          (error "expected argument 1 to be of type: <#struct-measure>"))

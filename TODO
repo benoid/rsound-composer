@@ -3,7 +3,16 @@ harmonies
 make key-signature a keyword in <#procedure:section>
 note duration ties
 more argchecks
-more tests
 
 make a module
 soundfont (sf2, sfz) parser
+
+write more tests:
+ Manual Tests
+ - composer-rsound-instrument.rkt
+ - composer-rsound.rkt
+ RackUnit Tests
+ - update note-length.rkt tests
+ - add test for struct note guard
+ - score.rkt
+ 
