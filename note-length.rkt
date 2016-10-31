@@ -7,6 +7,7 @@
 
 (struct note-length [name frames])
 
+;; Rewrite the test for this
 (define/argcheck (bpm-to-frames [tempo number? "number"])
   (if (= tempo 0) 
     0
@@ -56,6 +57,7 @@
         (list "DoubleDotted" (symbol->string (note-length-name nl)))""))
     (round (* (note-length-frames nl) 1.75))))
 
+;; Needs test
 (define (subdivision base-length-proc subdivision)
   (lambda (tempo)
     (let ([base-length (base-length-proc tempo)])
@@ -95,7 +97,7 @@
 (define (double-dotted-thirtysecond-note tempo)
   (double-dotted (thirtysecond-note tempo)))
 
-
+;; Update test to include subdivision
 (define/argcheck (note-length->fraction
                    [nl note-length? "note-length"])
   (cond 

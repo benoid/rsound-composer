@@ -5,6 +5,7 @@
 
 (provide (all-defined-out))
 
+;; Write tests for guard
 (struct note [letter octave duration]
   #:guard 
     (lambda 
@@ -25,6 +26,7 @@
                    (procedure? duration))
               (values letter octave duration)
               (error "invalid arguments")))))
+
 
 (define/argcheck (make-rest 
                    [duration 

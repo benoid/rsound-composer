@@ -8,6 +8,8 @@
 
 (provide (all-defined-out))
 
+
+;; Needs test
 (struct instrument [name conversion-proc]
   #:guard (lambda (name proc t)
             (if (and (string? name)
@@ -15,6 +17,8 @@
                 (values name proc)
                 (error "expected args of type: <#string> <#procedure>"))))
 
+
+;; Needs test
 (define/argcheck (conversion-proc-safety-wrapper 
                    [conversion-proc procedure? "procedure"])
   (lambda (n tempo)
@@ -25,6 +29,7 @@
   (instrument name (conversion-proc-safety-wrapper conversion-proc)))
 
 
+;; Needs test
 (define (vgame-synth-instrument spec)
   (create-instrument 
     (string-append "vgame synth: " (number->string spec))
@@ -34,6 +39,7 @@
                   (note-midi-number n) 
                   (note-length-frames ((note-duration n) tempo))))))
 
+;; Needs test
 (define (main-synth-instrument spec)
   (create-instrument 
     (string-append "main synth: " (number->string spec))
@@ -43,6 +49,7 @@
                   (note-midi-number n) 
                   (note-length-frames ((note-duration n) tempo))))))
 
+;; Needs test
 (define (path-synth-instrument spec)
   (create-instrument 
     (string-append "path synth: " (number->string spec))
