@@ -48,7 +48,7 @@
           (note 'B 3 eighth-note)
           (note 'C 4 eighth-note)
           (note 'A 3 eighth-note)
-          (note 'G 3 eighth-note)))))
+          (note 'G 3 eighth-note))))))
 
 
 (play-score scr)
