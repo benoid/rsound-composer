@@ -1,7 +1,8 @@
 double sharps/flats
 harmonies
+make key-signature a keyword in <#procedure:section>
 note duration ties
-argchecks
+more argchecks
 more tests
 
 make a submodule
