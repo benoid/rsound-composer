@@ -1,0 +1,236 @@
+#lang racket
+(require "composer-util.rkt"
+         "note-length.rkt"
+         "../define-argcheck.rkt")
+
+(provide (all-defined-out))
+
+(struct note [letter octave duration]
+  #:guard 
+    (lambda 
+      (letter octave duration name)
+        (let ([valid-letters 
+                (list 'C 'C# 'C#/Db
+                      'Db 'D  'D# 
+                      'D#/Eb 'Rest
+                      'Eb 'E 'F
+                      'F# 'F#/Gb 'Gb
+                      'G 'G# 'G#/Ab 
+                      'Ab 'A 'A#
+                      'A#/Bb 'Bb 'B)])
+          (if (and (member letter valid-letters)
+                   (integer? octave)
+                   (>= octave -1)
+                   (<= octave 8)
+                   (procedure? duration))
+              (values letter octave duration)
+              (error "invalid arguments")))))
+
+(define/argcheck (make-rest 
+                   [duration 
+                    procedure? 
+                    "note-length-procedure"])
+  (note 'Rest 0 duration))
+
+(define (rest? r)
+  (and (note? r)
+    (equal? (note-letter r) 'Rest)))
+
+(define (non-rest-note? n)
+  (and (note? n)
+       (not (rest? n))))
+
+(define (whole-rest)
+  (make-rest whole-note))
+(define (half-rest)
+  (make-rest half-note))
+(define (quarter-rest)
+  (make-rest quarter-note))
+(define (eighth-rest)
+  (make-rest eighth-note))
+(define (sixteenth-rest)
+  (make-rest sixteenth-note))
+(define (thirtysecond-rest)
+  (make-rest thirtysecond-note))
+
+(define (dotted-whole-rest)
+  (make-rest dotted-whole-note))
+(define (dotted-half-rest)
+  (make-rest dotted-half-note))
+(define (dotted-quarter-rest)
+  (make-rest dotted-quarter-note))
+(define (dotted-eighth-rest)
+  (make-rest dotted-eighth-note))
+(define (dotted-sixteenth-rest)
+  (make-rest dotted-sixteenth-note))
+
+(define (double-dotted-whole-rest)
+  (make-rest double-dotted-whole-note))
+(define (double-dotted-half-rest)
+  (make-rest double-dotted-half-note))
+(define (double-dotted-quarter-rest)
+  (make-rest double-dotted-quarter-note))
+(define (double-dotted-eighth-rest)
+  (make-rest double-dotted-eighth-note))
+
+
+(define/argcheck (make-note-from-midi-num 
+                   [num number? "number"] 
+                   [duration procedure? "note-length-procedure"])
+  (note (midi-number-letter num)
+        (midi-number-octave num)
+        duration))
+
+(define/argcheck (note-midi-number 
+                   [n
+                    non-rest-note?
+                    "non-rest-note"])
+  (letter-and-octave-to-midi 
+    (note-letter n)
+    (note-octave n)))
+
+(define/argcheck (note-freq [n note? "note"])
+  (if (rest? n) 0               
+    (letter-and-octave-to-freq 
+      (note-letter n)
+      (note-octave n))))
+
+(define/argcheck (note-interval-up 
+                   [n note? "note"] 
+                   [interval symbol? "symbol"])
+  (cond ((rest? n) n)
+        ((eq? interval 'Unison) n)
+        ((eq? interval 'AugmentedUnison)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 1)
+          (note-duration n)))
+        ((eq? interval 'Minor2nd)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 1)
+          (note-duration n)))
+        ((eq? interval 'Major2nd)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 2)
+          (note-duration n)))
+        ((eq? interval 'Augmented2nd)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 3)
+          (note-duration n)))
+        ((eq? interval 'Minor3rd)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 3)
+          (note-duration n)))
+        ((eq? interval 'Major3rd)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 4)
+          (note-duration n)))
+        ((eq? interval 'Perfect4th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 5)
+          (note-duration n)))
+        ((eq? interval 'Augmented4th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 6)
+          (note-duration n)))
+        ((eq? interval 'Diminished5th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 6)
+          (note-duration n)))
+        ((eq? interval 'Perfect5th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 7)
+          (note-duration n)))
+        ((eq? interval 'Augmented5th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 8)
+          (note-duration n)))
+        ((eq? interval 'Minor6th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 8)
+          (note-duration n)))
+        ((eq? interval 'Major6th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 9)
+          (note-duration n)))
+        ((eq? interval 'Minor7th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 10) 
+          (note-duration n)))
+        ((eq? interval 'Major7th)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 11) 
+          (note-duration n)))
+        ((eq? interval 'PerfectOctave)
+         (make-note-from-midi-num
+          (+ (note-midi-number n) 12)
+          (note-duration n)))
+        ))
+
+(define/argcheck (note-interval-down [n note? "note"] 
+                                  [interval symbol? "symbol"])
+  (cond ((rest? n) n)
+        ((eq? interval 'Unison) n)
+        ((eq? interval 'AugmentedUnison)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 1)
+          (note-duration n)))
+        ((eq? interval 'Minor2nd)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 1)
+          (note-duration n)))
+        ((eq? interval 'Major2nd)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 2)
+          (note-duration n)))
+        ((eq? interval 'Augmented2nd)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 3)
+          (note-duration n)))
+        ((eq? interval 'Minor3rd)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 3)
+          (note-duration n)))
+        ((eq? interval 'Major3rd)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 4)
+          (note-duration n)))
+        ((eq? interval 'Perfect4th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 5)
+          (note-duration n)))
+        ((eq? interval 'Augmented4th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 6)
+          (note-duration n)))
+        ((eq? interval 'Diminished5th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 6)
+          (note-duration n)))
+        ((eq? interval 'Perfect5th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 7)
+          (note-duration n)))
+        ((eq? interval 'Augmented5th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 8)
+          (note-duration n)))
+        ((eq? interval 'Minor6th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 8)
+          (note-duration n)))
+        ((eq? interval 'Major6th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 9)
+          (note-duration n)))
+        ((eq? interval 'Minor7th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 10)
+          (note-duration n)))
+        ((eq? interval 'Major7th)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 11)
+          (note-duration n)))
+        ((eq? interval 'PerfectOctave)
+         (make-note-from-midi-num
+          (- (note-midi-number n) 12)
+          (note-duration n)))))
