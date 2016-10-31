@@ -14,7 +14,6 @@
 (define (note->rsound n conversion-proc #:tempo [tempo 120])
   (conversion-proc n tempo))
 
-; Not tested
 (define (note/instrument->rsound n instr #:tempo [tempo 120])
   ((instrument-conversion-proc instr) n tempo))
 
@@ -85,7 +84,6 @@
                          (pstream-current-frame default-pstream)
                          #:tempo tempo))
 
-; Check retval
 (define (pstream-queue-instrument-part pstr
                                        instr-part
                                        frames
