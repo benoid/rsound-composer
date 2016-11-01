@@ -1,22 +1,25 @@
-Wanted Features
+Feature Wishlist
 
 Easy
 -double sharps/flats
 -harmonies
 -make key-signature a keyword in <#procedure:section>
+ instead of a label-function
 -more argchecks
 -make a module
--write more tests:
-  Manual Tests
-   - composer-rsound-instrument.rkt
-   - composer-rsound.rkt
-   RackUnit Tests
-   - score.rkt
+-find more things to test
+-scribble doc
+-wav exporting
 
 Medium
 -note duration ties
 -tonal transposition
 
-soundfont (sf2, sfz) parser
-
+Probably Difficult
+- create instruments from soundfonts (sf2, sfz)
+- import/export .ly
+- import/export .mid
+- import/export music/xml
  
+Probably big enough to warrant a separate project
+- Graphical notation editor
