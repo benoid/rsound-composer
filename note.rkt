@@ -25,7 +25,7 @@
                    (<= octave 8)
                    (procedure? duration))
               (values letter octave duration)
-              (error "invalid arguments")))))
+              (error "<#procedure:note> invalid arguments")))))
 
 
 (define/argcheck (make-rest 

@@ -32,7 +32,15 @@
 
 ; Section
 (struct struct-section 
-  [time-sig key-sig tempo instrument-part-list])
+  [time-sig key-sig tempo instrument-part-list]
+  #:guard
+    (lambda (time-sig key-sig tempo instr-part-list name)
+      (if (and (time-signature? time-sig)
+               ;; No check for key signature type is intended
+               (exact-positive-integer? tempo)
+               (list? instr-part-list))
+          (values time-sig key-sig tempo instr-part-list)
+          (error "<#procedure:struct-section> invalid arguments"))))
 
 ;; Write test for guard
 ;; Make key-sig a keyword
