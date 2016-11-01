@@ -3,6 +3,7 @@ harmonies
 make key-signature a keyword in <#procedure:section>
 note duration ties
 more argchecks
+tonal transposition
 
 make a module
 soundfont (sf2, sfz) parser

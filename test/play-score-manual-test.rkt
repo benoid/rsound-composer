@@ -149,8 +149,7 @@
           (note 'Bb 4 eighth-note))
         )
       )
-
-    (section 
+    (section
       (time-signature 4 4) 
       #:assert-time-sig #t
       (key-signature "") 
@@ -294,7 +293,10 @@
           (note 'G 4 eighth-note)
           (note 'Bb 4 eighth-note))
         )
-    )))
+      )
+
+    )
+  )
 
 
 
