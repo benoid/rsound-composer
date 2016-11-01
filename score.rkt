@@ -11,13 +11,13 @@
   #:guard (lambda (beats-per-measure
                     type-of-beat
                     name)
-            (if (and (exact-nonnegative-integer? beats-per-measure)
-                     (exact-nonnegative-integer? type-of-beat)
+            (if (and (exact-positive-integer? beats-per-measure)
+                     (exact-positive-integer? type-of-beat)
                      (or (= (modulo type-of-beat 2) 0)
                          (= type-of-beat 1)))
               (values beats-per-measure type-of-beat)
               (error "invalid arguments: expected arguments of type:
-                   <exact-nonnegative-intager> where
+                   <exact-positive-intager> where
                    type-of-beat is 1 or is divisible by 2" ))))
 
 
@@ -60,6 +60,15 @@
 (define section-tempo struct-section-tempo)
 (define section-instr-part-list struct-section-instrument-part-list)
 
+(define (section-frames sect)
+  (foldl 
+    (lambda (len id)
+      (max len id))
+      0
+      (map (lambda (instr-part)
+             (instr-part-frames instr-part (section-tempo sect)))
+             (section-instr-part-list sect))))
+
 ;; Instrument Part
 (struct struct-instrument-part [instrument measure-list])
 (define instrument-part? struct-instrument-part?)
@@ -80,9 +89,16 @@
           (andmap (lambda (m)
                     (measure-is-valid? m time-sig))
                   (instr-part-measure-list instr-part)))))
+(define (instr-part-frames instr-part tempo)
+  (foldl (lambda (meas total)
+           (if (not (measure? meas))
+             0
+             (+ total (measure-frames meas tempo))))
+         0
+         (instr-part-measure-list instr-part)))
 
 
-;; Write test for guard
+
 (struct struct-measure [notes]
   #:guard (lambda (notes name)
             (if (list? notes)
@@ -94,7 +110,6 @@
 (define (measure . notes)
   (struct-measure notes))
 
-;; Needs test
 (define (measure-is-valid? meas time-sig)
   (cond ((not (measure? meas)) 
          (error "expected argument 1 to be of type: <#struct-measure>"))
@@ -104,9 +119,17 @@
           (equal? 
             (foldl (lambda (n v)
                       (if (not (note? n))
-                        (error "expected list of type: <#note>")
+                        (error "expected list of type: <#note> | actual: " v )
                         (+ (note-length->fraction ((note-duration n) 0)) v)))
                    0
                    (measure-notes meas))
             (/ (time-signature-beats-per-measure time-sig) 
                (time-signature-type-of-beat time-sig))))))
+(define (measure-frames meas tempo)
+  (foldl
+    (lambda (n total)
+      (if (not (note? n))
+          0
+          (+ total (note-length-frames ((note-duration n) tempo)))))
+    0
+    (measure-notes meas)))

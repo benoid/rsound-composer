@@ -119,19 +119,15 @@
 
 ;; Needs test
 (define (pstream-queue-section pstr sect frames)
-  (let ([instr-part-lengths 
-          (map (lambda (instr-part)
-                 (pstream-queue-instrument-part 
-                   pstr
-                   instr-part
-                   frames
-                   #:tempo (section-tempo sect)))
-               (section-instr-part-list sect))])
-    (foldl (lambda (len id)
-             (max len id))
-             0
-             instr-part-lengths)))
-
+  (map (lambda (instr-part)
+         (thread (lambda ()
+         (pstream-queue-instrument-part 
+           pstr
+           instr-part
+           frames
+           #:tempo (section-tempo sect)))))
+       (section-instr-part-list sect))
+            (section-frames sect))
 
 ;; Needs test
 (define (play-section sect)
