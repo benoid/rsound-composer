@@ -4,6 +4,7 @@ Easy
 -double sharps/flats
 -harmonies
 -make key-signature a keyword in <#procedure:section>
+ instead of a label-function
 -more argchecks
 -make a module
 -find more things to test
