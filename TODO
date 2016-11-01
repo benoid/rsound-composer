@@ -1,4 +1,4 @@
-Wanted Features
+Feature Wishlist
 
 Easy
 -double sharps/flats
@@ -8,11 +8,16 @@ Easy
 -make a module
 -find more things to test
 -scribble doc
+-wav exporting
 
 Medium
+
 -note duration ties
 -tonal transposition
 
-soundfont (sf2, sfz) parser
-
+Probably Difficult
+- create instruments from soundfonts (sf2, sfz)
+- import/export .ly
+- import/export .mid
+- import/export music/xml
  
