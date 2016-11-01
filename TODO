@@ -12,6 +12,5 @@ write more tests:
  - composer-rsound-instrument.rkt
  - composer-rsound.rkt
  RackUnit Tests
- - add test for struct note guard
  - score.rkt
  

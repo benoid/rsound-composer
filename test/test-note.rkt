@@ -29,6 +29,26 @@
 (define note-tests
   (test-suite
     "note tests"
+    (test-case
+      "test note guard"
+        (let ([valid-letters 
+                (list 'C 'C# 'C#/Db
+                      'Db 'D  'D# 
+                      'D#/Eb 'Rest
+                      'Eb 'E 'F
+                      'F# 'F#/Gb 'Gb
+                      'G 'G# 'G#/Ab 
+                      'Ab 'A 'A#
+                      'A#/Bb 'Bb 'B)])
+          ;; This will throw an error if the 
+          ;; guard is broken
+          (for ([v valid-letters])
+            (note v 1 quarter-note))
+          (check-exn exn:fail? (lambda () (note 'Jb 2 eighth-note)))
+          (check-exn exn:fail? (lambda () (note 'D 50 eighth-note)))
+          (check-exn exn:fail? (lambda ()(note 'A 2 "hi there")))
+          ))
+
     (test-case 
       "make-note-from-midi"
       (let ([midi-nums (for/list ([i (in-range 12 108)]) i)])
