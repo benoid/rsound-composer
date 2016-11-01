@@ -6,12 +6,8 @@ Easy
 -make key-signature a keyword in <#procedure:section>
 -more argchecks
 -make a module
--write more tests:
-  Manual Tests
-   - composer-rsound-instrument.rkt
-   - composer-rsound.rkt
-   RackUnit Tests
-   - score.rkt
+-find more things to test
+-scribble doc
 
 Medium
 -note duration ties
