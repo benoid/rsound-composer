@@ -9,28 +9,25 @@
 (define note-length-tests
   (test-suite
     "note-length-tests"
-    ;; This test case needs to be updated to 
-    ;; reflect the changes in the frame calculation
-    ;; algorithm
-#;    (test-case
+    (test-case
       "bpm-to-frames converts bpm to frames"
-      (let ([freq-list (list 29400
-                            36750
-                            44100
-                            51450
-                            58800
-                            66150
-                            73500
-                            80850
-                            88200
-                            95550
-                            102900
-                            110250
-                            117600
-                            124950
-                            132300
-                            139650
-                            147000)])
+      (let ([freq-list (list 66150 
+                             52920 
+                             44100 
+                             37800 
+                             33075 
+                             29400 
+                             26460 
+                             24055 
+                             22050 
+                             20354 
+                             18900 
+                             17640 
+                             16538 
+                             15565 
+                             14700 
+                             13926 
+                             13230)])
         (check = (length tempo-list) (length freq-list))
         (for ([t tempo-list]
               [f freq-list])
@@ -109,6 +106,34 @@
       (check-equal? (note-length->fraction (double-dotted-half-note 0)) 7/8)
       (check-equal? (note-length->fraction (double-dotted-quarter-note 0)) 7/16)
       (check-equal? (note-length->fraction (double-dotted-eighth-note 0)) 7/32)
+      )
+    (test-case
+      "test subdivision"
+      (let ([note-length-list
+              (list 
+                    whole-note
+                    half-note
+                    quarter-note
+                    eighth-note
+                    sixteenth-note
+
+                    dotted-whole-note
+                    dotted-half-note
+                    dotted-quarter-note
+                    dotted-eighth-note
+                    dotted-sixteenth-note
+
+                    double-dotted-whole-note
+                    double-dotted-half-note
+                    double-dotted-quarter-note
+                    double-dotted-eighth-note)])
+        (for* ([nl note-length-list]
+               [i (in-range 3 13)])
+          (check-equal?
+            (/ (note-length->fraction (nl 0)) i)
+            (note-length->fraction
+              ((subdivision nl i) 0)))))
+
       )
     ))
 

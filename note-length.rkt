@@ -7,7 +7,6 @@
 
 (struct note-length [name frames])
 
-;; Rewrite the test for this
 (define/argcheck (bpm-to-frames [tempo number? "number"])
   (if (= tempo 0) 
     0
@@ -138,6 +137,6 @@
                 (/ (note-length->fraction 
                      (note-length base-length-symbol 0)) subdivision)))
 
-        (else (error "invalid note length"))))
+        (else (error "invalid note length: " (note-length-name nl)))))
 
         
