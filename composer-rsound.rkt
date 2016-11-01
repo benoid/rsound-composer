@@ -11,6 +11,16 @@
 (define default-pstream
   (make-pstream))
 
+(define (sleep-while thnk time)
+  (if (thnk)
+    (begin
+      (sleep time)
+      (display "sleeping ")
+      (display time)
+      (newline)
+      (sleep-while thnk time))
+    #t))
+
 ;; Needs test
 (define (note->rsound n conversion-proc #:tempo [tempo 120])
   (conversion-proc n tempo))
@@ -119,15 +129,24 @@
 
 ;; Needs test
 (define (pstream-queue-section pstr sect frames)
-  (map (lambda (instr-part)
-         (thread (lambda ()
-         (pstream-queue-instrument-part 
-           pstr
-           instr-part
-           frames
-           #:tempo (section-tempo sect)))))
-       (section-instr-part-list sect))
-            (section-frames sect))
+  (let 
+    ([thread-ids 
+       (map 
+         (lambda (instr-part)
+              (thread 
+                (lambda ()
+                        (pstream-queue-instrument-part 
+                          pstr
+                          instr-part
+                          frames
+                          #:tempo (section-tempo sect))
+                      )))
+            (section-instr-part-list sect))])
+       (sleep-while
+         (lambda ()
+           (andmap thread-running? thread-ids))
+         0.0000001)
+       (section-frames sect)))
 
 ;; Needs test
 (define (play-section sect)
