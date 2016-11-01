@@ -47,7 +47,7 @@
     (note 'C 5 (subdivision quarter-note 5))
     (note 'C 5 quarter-note)))
 
-(define bad-measure1 ;; Measure contains a non-note valud
+(define bad-measure2 ;; Measure contains a non-note valud
   (measure
     "I'm a string!"
     (note 'C 5 (subdivision half-note 2))
@@ -64,7 +64,7 @@
   (test-suite
     "score tests"
     (test-case
-      "test create time signature")
+      "test create time signature"
       (let (;; These should all be created without error
             [commmon-time-sig1 (time-signature 4 4)]  
             [commmon-time-sig2 (time-signature 2 4)]  
@@ -81,10 +81,29 @@
         (check-exn exn:fail?
                    (lambda ()
                      (time-signature 4 0)))
+        )
     (test-case
-      "test measure is valid")
+      "test measure is valid"
+      (check-equal? (measure-is-valid? 
+                      good-measure1
+                      (time-signature 4 4)) 
+                    #t) 
+      (check-equal? (measure-is-valid? 
+                      good-measure2
+                      (time-signature 4 4)) 
+                    #t) 
+      (check-equal? (measure-is-valid? 
+                      good-measure3
+                      (time-signature 4 4)) 
+                    #t) 
+      (check-equal? (measure-is-valid? 
+                      bad-measure1
+                      (time-signature 4 4)) 
+                    #f)
+      (check-exn exn:fail?
+                 (lambda ()
+                   (measure-is-valid? 
+                     bad-measure2
+                     (time-signature 4 4))))))))
 
-    (test-case
-      "test instrument part guard")
-    (test-case
-      "test section guard")))
+(run-tests score-tests)
