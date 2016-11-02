@@ -83,7 +83,7 @@
           (note 'Bb 3 eighth-note)
           (note 'D  4 eighth-note)))
       (instrument-part
-        [vgame-synth-instrument 1]
+        [vgame-synth-instrument 4]
         (measure
           (note 'D  5 eighth-note)
           (eighth-rest)

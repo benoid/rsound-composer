@@ -15,9 +15,6 @@
   (if (thnk)
     (begin
       (sleep time)
-      (display "sleeping ")
-      (display time)
-      (newline)
       (sleep-while thnk time))
     #t))
 
@@ -128,7 +125,10 @@
                                  #:tempo tempo))
 
 ;; Needs test
-(define (pstream-queue-section pstr sect frames)
+(define (pstream-queue-section pstr 
+                               sect 
+                               frames
+                               #:thread-sleep-interval [tsi .005])
   (let 
     ([thread-ids 
        (map 
@@ -140,12 +140,13 @@
                           instr-part
                           frames
                           #:tempo (section-tempo sect))
+                        (kill-thread (current-thread))
                       )))
             (section-instr-part-list sect))])
        (sleep-while
          (lambda ()
            (andmap thread-running? thread-ids))
-         0.0000001)
+         tsi)
        (section-frames sect)))
 
 ;; Needs test
