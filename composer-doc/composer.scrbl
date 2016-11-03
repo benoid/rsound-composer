@@ -7,7 +7,7 @@
 @(require (for-label racket
                      "../composer.rkt"))
 
-@defmodule[rsound/composer]{This module provides a music 
+@defmodule["composer.rkt"]{This module provides a music 
 theory based abstraction layer for RSound.}
 
 @section{Notes}
