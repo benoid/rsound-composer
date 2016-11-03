@@ -4,7 +4,7 @@
          "composer-rsound-instrument.rkt"
          "note.rkt"
          "composer-util.rkt"
-         "note-length.rkt"
+         "beat-value.rkt"
          "score.rkt")
 
 (provide (all-defined-out))

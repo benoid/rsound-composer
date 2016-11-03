@@ -3,7 +3,7 @@
 (require rackunit
          rackunit/text-ui
          "../note.rkt"
-         "../note-length.rkt")
+         "../beat-value.rkt")
 
 (define (list-slice lst start end)
   (for/list ([i (in-range start end)])

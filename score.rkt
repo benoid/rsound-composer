@@ -1,7 +1,7 @@
 #lang racket
 
 (require "../define-argcheck.rkt"
-         "note-length.rkt"
+         "beat-value.rkt"
          "note.rkt")
 (provide (all-defined-out))
 
@@ -128,7 +128,7 @@
             (foldl (lambda (n v)
                       (if (not (note? n))
                         (error "expected list of type: <#note> | actual: " v )
-                        (+ (note-length->fraction ((note-duration n) 0)) v)))
+                        (+ (beat-value->fraction ((note-duration n) 1)) v)))
                    0
                    (measure-notes meas))
             (/ (time-signature-beats-per-measure time-sig) 
@@ -138,6 +138,6 @@
     (lambda (n total)
       (if (not (note? n))
           0
-          (+ total (note-length-frames ((note-duration n) tempo)))))
+          (+ total (beat-value-frames ((note-duration n) tempo)))))
     0
     (measure-notes meas)))

@@ -1,6 +1,6 @@
 #lang racket
 (require "composer-util.rkt"
-         "note-length.rkt"
+         "beat-value.rkt"
          "../define-argcheck.rkt")
 
 (provide (all-defined-out))
@@ -30,7 +30,7 @@
 (define/argcheck (make-rest 
                    [duration 
                     procedure? 
-                    "note-length-procedure"])
+                    "beat-value-procedure"])
   (note 'Rest 0 duration))
 
 (define (rest? r)
@@ -81,7 +81,7 @@
                             (exact-positive-integer? n)
                             (< n 128)))
                         "number"] 
-                   [duration procedure? "note-length-procedure"])
+                   [duration procedure? "beat-value-procedure"])
   (note (midi-number-letter num)
         (midi-number-octave num)
         duration))

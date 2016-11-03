@@ -3,7 +3,7 @@
 (require rsound
          rsound/single-cycle
          "note.rkt"
-         "note-length.rkt"
+         "beat-value.rkt"
          "../define-argcheck.rkt")
 
 (provide (all-defined-out))
@@ -22,7 +22,7 @@
 (define/argcheck (conversion-proc-safety-wrapper 
                    [conversion-proc procedure? "procedure"])
   (lambda (n tempo)
-    (if (rest? n) (silence (note-length-frames ((note-duration n) tempo)))
+    (if (rest? n) (silence (beat-value-frames ((note-duration n) tempo)))
       (conversion-proc n tempo))))
 
 (define (create-instrument name conversion-proc)
@@ -37,7 +37,7 @@
       (synth-note "vgame" 
                   spec 
                   (note-midi-number n) 
-                  (note-length-frames ((note-duration n) tempo))))))
+                  (beat-value-frames ((note-duration n) tempo))))))
 
 ;; Needs test
 (define (main-synth-instrument spec)
@@ -47,7 +47,7 @@
       (synth-note "main" 
                   spec 
                   (note-midi-number n) 
-                  (note-length-frames ((note-duration n) tempo))))))
+                  (beat-value-frames ((note-duration n) tempo))))))
 
 ;; Needs test
 (define (path-synth-instrument spec)
@@ -57,5 +57,5 @@
       (synth-note "path" 
                   spec 
                   (note-midi-number n) 
-                  (note-length-frames ((note-duration n) tempo))))))
+                  (beat-value-frames ((note-duration n) tempo))))))
 
