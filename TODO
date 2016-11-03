@@ -7,6 +7,11 @@ Easy
  instead of a label-function
 -more argchecks
   - argchecks for play and pstream-queue functions
+  - argchecks for subdivision
+  - argchecks for all play and pstream-queue functions
+  - guard for beat-value
+-merge instrument-proc-safety-wrapper directly into instrument constructor
+  - remove make-instrument extra constructor
 -make a module
 -find more things to test
 -scribble doc
