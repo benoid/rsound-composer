@@ -11,12 +11,14 @@
 theory based abstraction layer for RSound.}
 
 @section{Notes}
+
 This section discusses how to create and play notes. The @racket[note] type is the basic unit of sound in @racket[rsound/composer].  
+
 @defstruct[note ([letter symbol?][octave integer?][duration beat-value-procedure?])]{
 Represents a note. For example:
 @racketblock[
-(note 'C 5 whole-note)
-]
+(note 'C 5 whole-note)]
+
 Will create a @racket[note] with the pitch c5 and the duration of a whole-note.  In order to accurately represent western musical notation, the sets of arguments allowed to be passed to @racket[note] are very strict subsets of the possible elements of the types listed by the constructor.
 
 The @racket[letter] argument must be a member of
@@ -75,3 +77,48 @@ A @racket[rest?] is an instance of type @racket[note] which produces silence for
 @defproc[(double-dotted-eighth-rest) rest?]
 
 @section{Beat Values}
+
+@defstruct[beat-value ([name symbol?]
+                      [beat-value-proc beat-value-procedure?])]
+
+@defproc[(beat-value-procedure? [beat-value-proc any/c]) boolean?]
+@defproc[(bpm-to-frames [tempo exact-positive-integer?]) exact-non-negative-intager?]
+
+@defproc[(whole-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(half-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(quarter-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(eighth-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(sixteenth-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(thirtysecond-note [tempo exact-positive-integer?]) beat-value?]
+
+@defproc[(dotted-whole-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(dotted-half-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(dotted-quarter-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(dotted-eighth-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(dotted-sixteenth-note [tempo exact-positive-integer?]) beat-value?]
+
+@defproc[(double-dotted-whole-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(double-dotted-half-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(double-dotted-quarter-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(double-dotted-eighth-note [tempo exact-positive-integer?]) beat-value?]
+@defproc[(subdivision [base-length-proc beat-value-procedure?]
+                      [subdiv exact-positive-integer?]) beat-value-procedure?]
+@defproc[(beat-value->fraction [beat-value-proc beat-value-procedure?]) rational?]
+
+@section{Synthesizer Instruments}
+
+@defstruct[instrument ([name string?] [conversion-proc procedure?])]
+@defproc[(vgame-synth-instrument [spec exact-positive-integer?]) instrument?]
+@defproc[(main-synth-instrument [spec exact-positive-integer?]) instrument?]
+@defproc[(path-synth-instrument [spec exact-positive-integer?]) instrument?]
+
+@section{Measures}
+
+
+@section{Instrument Parts}
+
+@section{Score Sections}
+
+@section{Scores}
+
+@section{Other Utilities}
