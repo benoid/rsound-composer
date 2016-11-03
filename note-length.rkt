@@ -7,37 +7,44 @@
 
 (struct note-length [name frames])
 
-(define/argcheck (bpm-to-frames [tempo number? "number"])
+(define (note-length-procedure? note-length-proc)
+  (if (and (procedure? note-length-proc)
+           (= (procedure-arity note-length-proc) 1))
+    (let ([nl (note-length-proc 1)])
+      (if (note-length? nl) #t #f))
+    #f))
+
+(define/argcheck (bpm-to-frames [tempo exact-positive-integer? "exact-positive-integer?"])
   (if (= tempo 0) 
     0
   (round (* (/ 60 tempo) 44100))))
 
-(define/argcheck (whole-note [tempo number? "number"])
+(define/argcheck (whole-note [tempo exact-positive-integer? "exact-positive-integer?"])
   (note-length 
     'WholeNote 
     (* (bpm-to-frames tempo) 4)))
 
-(define/argcheck (half-note [tempo number? "number"])
+(define/argcheck (half-note [tempo exact-positive-integer? "exact-positive-integer?"])
   (note-length 
     'HalfNote 
     (* (bpm-to-frames tempo) 2)))
 
-(define/argcheck (quarter-note [tempo number? "number"])
+(define/argcheck (quarter-note [tempo exact-positive-integer? "exact-positive-integer?"])
   (note-length 
     'QuarterNote 
     (bpm-to-frames tempo)))
 
-(define/argcheck (eighth-note [tempo number? "number"])
+(define/argcheck (eighth-note [tempo exact-positive-integer? "exact-positive-integer?"])
   (note-length 
     'EighthNote 
     (round (* (bpm-to-frames tempo) 0.5))))
 
-(define/argcheck (sixteenth-note [tempo number? "number"])
+(define/argcheck (sixteenth-note [tempo exact-positive-integer? "exact-positive-integer?"])
   (note-length 
     'SixteenthNote 
     (round (* (bpm-to-frames tempo) 0.25))))
 
-(define/argcheck (thirtysecond-note [tempo number? "number"])
+(define/argcheck (thirtysecond-note [tempo exact-positive-integer? "exact-positive-integer?"])
   (note-length 
     'ThirtysecondNote 
     (round (* (bpm-to-frames tempo) 0.125))))
@@ -135,7 +142,7 @@
                                  (string-append (number->string subdivision) " ") 
                                  #:right? #f))])
                 (/ (note-length->fraction 
-                     (note-length base-length-symbol 0)) subdivision)))
+                     (note-length base-length-symbol 1)) subdivision)))
 
         (else (error "invalid note length: " (note-length-name nl)))))
 

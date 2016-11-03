@@ -1,13 +1,14 @@
 #lang racket
 
 (require rsound
-         "composer.rkt"
-         "composer-rsound-instrument.rkt")
+         "composer-rsound-instrument.rkt"
+         "note.rkt"
+         "composer-util.rkt"
+         "note-length.rkt"
+         "score.rkt")
 
-(provide (all-defined-out)
-         (all-from-out rsound
-                       "composer.rkt"
-                       "composer-rsound-instrument.rkt"))
+(provide (all-defined-out))
+
 (define default-pstream
   (make-pstream))
 

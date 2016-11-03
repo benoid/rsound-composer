@@ -5,7 +5,6 @@
 
 (provide (all-defined-out))
 
-;; Write tests for guard
 (struct note [letter octave duration]
   #:guard 
     (lambda 
@@ -77,7 +76,11 @@
 
 
 (define/argcheck (make-note-from-midi-num 
-                   [num number? "number"] 
+                   [num (lambda (n)
+                          (and
+                            (exact-positive-integer? n)
+                            (< n 128)))
+                        "number"] 
                    [duration procedure? "note-length-procedure"])
   (note (midi-number-letter num)
         (midi-number-octave num)

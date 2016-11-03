@@ -1,6 +1,6 @@
 #lang racket
 
-(require "../composer-rsound.rkt")
+(require "../composer.rkt")
 
 (define sect
     (section

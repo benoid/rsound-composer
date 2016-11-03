@@ -6,6 +6,7 @@ Easy
 -make key-signature a keyword in <#procedure:section>
  instead of a label-function
 -more argchecks
+  - argchecks for play and pstream-queue functions
 -make a module
 -find more things to test
 -scribble doc
