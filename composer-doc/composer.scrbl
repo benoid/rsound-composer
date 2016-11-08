@@ -114,8 +114,26 @@ A @racket[rest?] is an instance of type @racket[note] which produces silence for
 
 @section{Measures}
 
+@defstruct[struct-measure ([struct-measure-notes list?])]
+@defproc[(measure [n note?] ...) struct-measure?]
+@defproc[(measure? [m any/c]) boolean?]
+@defproc[(measure-notes [m struct-measure?]) list?]
+@defproc[(measure-is-valid? [m measure?] [ts time-signature?]) boolean?]
+@defproc[(measure-frames [m measure?]) exact-nonnegative-integer?]
+
 
 @section{Instrument Parts}
+
+@defstruct[struct-instrument-part ([instrument any/c] 
+                                  [measure-list (listof? measure?)])]
+@defproc[(instrument-part [instrument any/c] [m measure?] ...) struct-instrument-part?]
+@defproc[(instrument-part? [i any/c]) boolean?]
+@defproc[(instr-part-instrument [i instrument-part?]) any/c]
+@defproc[(instr-part-measure-list [i instrument-part?]) (listof? measure?)]
+
+@defproc[(instr-part-is-valid? [i instrument-part?] 
+                               [ts time-signature?])
+                               boolean?]
 
 @section{Score Sections}
 
