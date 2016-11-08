@@ -193,7 +193,7 @@
     sect
     sect))
 
-;(play-score scr)
+(play-score scr)
 (display "ctl-D to quit")
 (read)
 
