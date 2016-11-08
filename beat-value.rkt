@@ -29,7 +29,7 @@
     'HalfNote 
     (* (bpm-to-frames tempo) 2)))
 
-(define/argcheck (quarter-note [tempo exact-positive-integer? "exact-positive-integer?"])
+(define/argcheck (quarter-beat [tempo exact-positive-integer? "exact-positive-integer?"])
   (beat-value 
     'QuarterNote 
     (bpm-to-frames tempo)))
@@ -81,8 +81,8 @@
   (dotted (whole-beat tempo)))
 (define (dotted-half-beat tempo)
   (dotted (half-beat tempo)))
-(define (dotted-quarter-note tempo)
-  (dotted (quarter-note tempo)))
+(define (dotted-quarter-beat tempo)
+  (dotted (quarter-beat tempo)))
 (define (dotted-eighth-beat tempo)
   (dotted (eighth-beat tempo)))
 (define (dotted-sixteenth-beat tempo)
@@ -94,8 +94,8 @@
   (double-dotted (whole-beat tempo)))
 (define (double-dotted-half-beat tempo)
   (double-dotted (half-beat tempo)))
-(define (double-dotted-quarter-note tempo)
-  (double-dotted (quarter-note tempo)))
+(define (double-dotted-quarter-beat tempo)
+  (double-dotted (quarter-beat tempo)))
 (define (double-dotted-eighth-beat tempo)
   (double-dotted (eighth-beat tempo)))
 (define (double-dotted-sixteenth-beat tempo)

@@ -18,7 +18,7 @@
 (define good-measure2
   (measure
     (note 'C 5 half-beat)
-    (note 'C 5 quarter-note)
+    (note 'C 5 quarter-beat)
     (note 'C 5 eighth-beat)
     (note 'C 5 dotted-sixteenth-beat)
     (note 'C 5 thirtysecond-beat)))
@@ -28,24 +28,24 @@
     (note 'C 5 (subdivision half-beat 3))
     (note 'C 5 (subdivision half-beat 3))
     (note 'C 5 (subdivision half-beat 3))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 quarter-note)))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 quarter-beat)))
 
 (define bad-measure1 ;; Measure is too long
   (measure
     (note 'C 5 (subdivision half-beat 2))
     (note 'C 5 (subdivision half-beat 2))
     (note 'C 5 (subdivision half-beat 2))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 quarter-note)))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 quarter-beat)))
 
 (define bad-measure2 ;; Measure contains a non-note valud
   (measure
@@ -53,12 +53,12 @@
     (note 'C 5 (subdivision half-beat 2))
     (note 'C 5 (subdivision half-beat 2))
     (note 'C 5 (subdivision half-beat 2))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 (subdivision quarter-note 5))
-    (note 'C 5 quarter-note)))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 (subdivision quarter-beat 5))
+    (note 'C 5 quarter-beat)))
 
 (define score-tests
   (test-suite

@@ -13,18 +13,18 @@
   (append* 
     (for/list ([i (in-range 0 8)])
       (list
-        (note 'C     i quarter-note)
-        (note 'C#/Db i quarter-note)
-        (note 'D     i quarter-note)
-        (note 'D#/Eb i quarter-note)
-        (note 'E     i quarter-note)
-        (note 'F     i quarter-note)
-        (note 'F#/Gb i quarter-note)
-        (note 'G     i quarter-note)
-        (note 'G#/Ab i quarter-note)
-        (note 'A     i quarter-note)
-        (note 'A#/Bb i quarter-note)
-        (note 'B     i quarter-note)))))
+        (note 'C     i quarter-beat)
+        (note 'C#/Db i quarter-beat)
+        (note 'D     i quarter-beat)
+        (note 'D#/Eb i quarter-beat)
+        (note 'E     i quarter-beat)
+        (note 'F     i quarter-beat)
+        (note 'F#/Gb i quarter-beat)
+        (note 'G     i quarter-beat)
+        (note 'G#/Ab i quarter-beat)
+        (note 'A     i quarter-beat)
+        (note 'A#/Bb i quarter-beat)
+        (note 'B     i quarter-beat)))))
 
 (define note-tests
   (test-suite
@@ -43,7 +43,7 @@
           ;; This will throw an error if the 
           ;; guard is broken
           (for ([v valid-letters])
-            (note v 1 quarter-note))
+            (note v 1 quarter-beat))
           (check-exn exn:fail? (lambda () (note 'Jb 2 eighth-beat)))
           (check-exn exn:fail? (lambda () (note 'D 50 eighth-beat)))
           (check-exn exn:fail? (lambda ()(note 'A 2 "hi there")))
@@ -57,12 +57,12 @@
               [m midi-nums])
           (check-equal? 
             (note-letter 
-              (make-note-from-midi-num m quarter-note))
+              (make-note-from-midi-num m quarter-beat))
              (note-letter n )
              "could not make note from midi number: letter")
           (check-equal?
             (note-octave 
-              (make-note-from-midi-num m quarter-note))
+              (make-note-from-midi-num m quarter-beat))
              (note-octave n )
              "could not make note from midi number: octave"))))
 

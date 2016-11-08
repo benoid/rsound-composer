@@ -38,7 +38,7 @@
              (check-equal? (beat-value-frames (half-beat t)) 
                            (* (bpm-to-frames t) 2)
                            "create half-beat failed: frames") 
-             (check-equal? (beat-value-frames (quarter-note t)) 
+             (check-equal? (beat-value-frames (quarter-beat t)) 
                            (bpm-to-frames t)
                            "create quarter note failed: frames") 
              (check-equal? (beat-value-frames (eighth-beat t)) 
@@ -51,11 +51,11 @@
                            (round (* (bpm-to-frames t) 0.125))
                            "create thirtysecond note failed: frames")
              (check-equal? (beat-value-frames 
-                             (dotted-quarter-note t)) 
+                             (dotted-quarter-beat t)) 
                            (round (* (bpm-to-frames t) 1.5))
                            "create dotted quarter note failed: frames")
              (check-equal? (beat-value-frames 
-                             (double-dotted-quarter-note t)) 
+                             (double-dotted-quarter-beat t)) 
                            (round (* (bpm-to-frames t) 1.75))
                            "create double dotted quarter note failed: frames")
              (check-equal? (beat-value-name
@@ -63,7 +63,7 @@
                              'WholeNote
                            "create whole note failed: name")
              (check-equal? (beat-value-name
-                             (quarter-note t)) 
+                             (quarter-beat t)) 
                              'QuarterNote
                            "create: quarter note failed: name")
              (check-equal? (beat-value-name
@@ -79,11 +79,11 @@
                              'ThirtysecondNote
                            "create: thirtysecond note failed: name")
              (check-equal? (beat-value-name
-                             (dotted-quarter-note t)) 
+                             (dotted-quarter-beat t)) 
                              'DottedQuarterNote
                            "create dotted quarter note failed: name")
              (check-equal? (beat-value-name
-                             (double-dotted-quarter-note t)) 
+                             (double-dotted-quarter-beat t)) 
                              'DoubleDottedQuarterNote
                            "create double dotted quarter note failed: name")
              )))
@@ -91,20 +91,20 @@
       "test beat-value->fraction"
       (check-equal? (beat-value->fraction (whole-beat 1)) 1)
       (check-equal? (beat-value->fraction (half-beat 1)) 1/2)
-      (check-equal? (beat-value->fraction (quarter-note 1)) 1/4)
+      (check-equal? (beat-value->fraction (quarter-beat 1)) 1/4)
       (check-equal? (beat-value->fraction (eighth-beat 1)) 1/8)
       (check-equal? (beat-value->fraction (sixteenth-beat 1)) 1/16)
       (check-equal? (beat-value->fraction (thirtysecond-beat 1)) 1/32)
 
       (check-equal? (beat-value->fraction (dotted-whole-beat 1)) 3/2)
       (check-equal? (beat-value->fraction (dotted-half-beat 1)) 3/4)
-      (check-equal? (beat-value->fraction (dotted-quarter-note 1)) 3/8)
+      (check-equal? (beat-value->fraction (dotted-quarter-beat 1)) 3/8)
       (check-equal? (beat-value->fraction (dotted-eighth-beat 1)) 3/16)
       (check-equal? (beat-value->fraction (dotted-sixteenth-beat 1)) 3/32)
 
       (check-equal? (beat-value->fraction (double-dotted-whole-beat 1)) 7/4)
       (check-equal? (beat-value->fraction (double-dotted-half-beat 1)) 7/8)
-      (check-equal? (beat-value->fraction (double-dotted-quarter-note 1)) 7/16)
+      (check-equal? (beat-value->fraction (double-dotted-quarter-beat 1)) 7/16)
       (check-equal? (beat-value->fraction (double-dotted-eighth-beat 1)) 7/32)
       )
     (test-case
@@ -113,19 +113,19 @@
               (list 
                     whole-beat
                     half-beat
-                    quarter-note
+                    quarter-beat
                     eighth-beat
                     sixteenth-beat
 
                     dotted-whole-beat
                     dotted-half-beat
-                    dotted-quarter-note
+                    dotted-quarter-beat
                     dotted-eighth-beat
                     dotted-sixteenth-beat
 
                     double-dotted-whole-beat
                     double-dotted-half-beat
-                    double-dotted-quarter-note
+                    double-dotted-quarter-beat
                     double-dotted-eighth-beat)])
         (for* ([nl beat-value-list]
                [i (in-range 3 13)])

@@ -95,8 +95,8 @@
           (note 'Bb 4 eighth-beat))
         (measure
           (eighth-rest)
-          (note 'D  5 dotted-quarter-note)
-          (note 'D  5 quarter-note)
+          (note 'D  5 dotted-quarter-beat)
+          (note 'D  5 quarter-beat)
           (note 'C  5 eighth-beat)
           (note 'Bb 4 eighth-beat))
         (measure
@@ -110,7 +110,7 @@
           (note 'C  5 eighth-beat))
         (measure
           (eighth-rest)
-          (note 'Bb 4 quarter-note)
+          (note 'Bb 4 quarter-beat)
           (note 'A  4 eighth-beat)
           (note 'G  4 eighth-beat)
           (note 'D 4 eighth-beat)
@@ -127,8 +127,8 @@
           (note 'Bb 4 eighth-beat))
         (measure
           (eighth-rest)
-          (note 'D  5 dotted-quarter-note)
-          (note 'D  5 quarter-note)
+          (note 'D  5 dotted-quarter-beat)
+          (note 'D  5 quarter-beat)
           (note 'C  5 eighth-beat)
           (note 'Bb 4 eighth-beat))
         (measure
