@@ -57,9 +57,34 @@
                    (lambda (ip)
                      (instr-part-is-valid? ip time-sig)) 
                    instrument-parts)))
-        (error 
-          "one or more measures do not match the section time signature")
-
+        (let* ([invalid-measure-index-list
+                (map
+                  (lambda (ip)
+                    (find-invalid-measure-indices ip time-sig))
+                  instrument-parts)]
+               [error-list
+                 (filter
+                   string?
+                   (for/list ([instr-part instrument-parts]
+                       [indices invalid-measure-index-list]
+                       [i (in-range 0 (length instrument-parts))])
+                     (if (null? indices) 
+                       0
+                       (string-append
+                         "\tinstrument " 
+                          (number->string i)
+                          ": m. "
+                          (apply 
+                            string-append
+                            (map
+                              (lambda (x)
+                                (string-append
+                                  (number->string x) " "))
+                              indices))
+                          "\n"))))])
+          (error
+            (string-append "invalid measures: \n" 
+                           (apply string-append error-list))))
     new-section)))
 
 
@@ -104,6 +129,17 @@
              (+ total (measure-frames meas tempo))))
          0
          (instr-part-measure-list instr-part)))
+
+(define (find-invalid-measure-indices instr-part time-sig)
+  (let ([measure-list (instr-part-measure-list instr-part)])
+    (filter 
+      number?
+        (for/list ([meas measure-list]
+                   [i (in-range 0 (length measure-list))])
+          (if (measure-is-valid? meas time-sig)
+          meas
+          i)))))
+
 
 
 
