@@ -14,20 +14,20 @@
 
 (define good-measure1
   (measure
-    (note 'C 5 whole-note)))
+    (note 'C 5 whole-beat)))
 (define good-measure2
   (measure
-    (note 'C 5 half-note)
+    (note 'C 5 half-beat)
     (note 'C 5 quarter-note)
-    (note 'C 5 eighth-note)
-    (note 'C 5 dotted-sixteenth-note)
-    (note 'C 5 thirtysecond-note)))
+    (note 'C 5 eighth-beat)
+    (note 'C 5 dotted-sixteenth-beat)
+    (note 'C 5 thirtysecond-beat)))
 
 (define good-measure3
   (measure
-    (note 'C 5 (subdivision half-note 3))
-    (note 'C 5 (subdivision half-note 3))
-    (note 'C 5 (subdivision half-note 3))
+    (note 'C 5 (subdivision half-beat 3))
+    (note 'C 5 (subdivision half-beat 3))
+    (note 'C 5 (subdivision half-beat 3))
     (note 'C 5 (subdivision quarter-note 5))
     (note 'C 5 (subdivision quarter-note 5))
     (note 'C 5 (subdivision quarter-note 5))
@@ -37,9 +37,9 @@
 
 (define bad-measure1 ;; Measure is too long
   (measure
-    (note 'C 5 (subdivision half-note 2))
-    (note 'C 5 (subdivision half-note 2))
-    (note 'C 5 (subdivision half-note 2))
+    (note 'C 5 (subdivision half-beat 2))
+    (note 'C 5 (subdivision half-beat 2))
+    (note 'C 5 (subdivision half-beat 2))
     (note 'C 5 (subdivision quarter-note 5))
     (note 'C 5 (subdivision quarter-note 5))
     (note 'C 5 (subdivision quarter-note 5))
@@ -50,9 +50,9 @@
 (define bad-measure2 ;; Measure contains a non-note valud
   (measure
     "I'm a string!"
-    (note 'C 5 (subdivision half-note 2))
-    (note 'C 5 (subdivision half-note 2))
-    (note 'C 5 (subdivision half-note 2))
+    (note 'C 5 (subdivision half-beat 2))
+    (note 'C 5 (subdivision half-beat 2))
+    (note 'C 5 (subdivision half-beat 2))
     (note 'C 5 (subdivision quarter-note 5))
     (note 'C 5 (subdivision quarter-note 5))
     (note 'C 5 (subdivision quarter-note 5))

@@ -19,12 +19,12 @@
     0
   (round (* (/ 60 tempo) 44100))))
 
-(define/argcheck (whole-note [tempo exact-positive-integer? "exact-positive-integer?"])
+(define/argcheck (whole-beat [tempo exact-positive-integer? "exact-positive-integer?"])
   (beat-value 
     'WholeNote 
     (* (bpm-to-frames tempo) 4)))
 
-(define/argcheck (half-note [tempo exact-positive-integer? "exact-positive-integer?"])
+(define/argcheck (half-beat [tempo exact-positive-integer? "exact-positive-integer?"])
   (beat-value 
     'HalfNote 
     (* (bpm-to-frames tempo) 2)))
@@ -34,17 +34,17 @@
     'QuarterNote 
     (bpm-to-frames tempo)))
 
-(define/argcheck (eighth-note [tempo exact-positive-integer? "exact-positive-integer?"])
+(define/argcheck (eighth-beat [tempo exact-positive-integer? "exact-positive-integer?"])
   (beat-value 
     'EighthNote 
     (round (* (bpm-to-frames tempo) 0.5))))
 
-(define/argcheck (sixteenth-note [tempo exact-positive-integer? "exact-positive-integer?"])
+(define/argcheck (sixteenth-beat [tempo exact-positive-integer? "exact-positive-integer?"])
   (beat-value 
     'SixteenthNote 
     (round (* (bpm-to-frames tempo) 0.25))))
 
-(define/argcheck (thirtysecond-note [tempo exact-positive-integer? "exact-positive-integer?"])
+(define/argcheck (thirtysecond-beat [tempo exact-positive-integer? "exact-positive-integer?"])
   (beat-value 
     'ThirtysecondNote 
     (round (* (bpm-to-frames tempo) 0.125))))
@@ -77,31 +77,31 @@
         (round (/ (beat-value-frames base-length) subdivision ))))))
 
 
-(define (dotted-whole-note tempo)
-  (dotted (whole-note tempo)))
-(define (dotted-half-note tempo)
-  (dotted (half-note tempo)))
+(define (dotted-whole-beat tempo)
+  (dotted (whole-beat tempo)))
+(define (dotted-half-beat tempo)
+  (dotted (half-beat tempo)))
 (define (dotted-quarter-note tempo)
   (dotted (quarter-note tempo)))
-(define (dotted-eighth-note tempo)
-  (dotted (eighth-note tempo)))
-(define (dotted-sixteenth-note tempo)
-  (dotted (sixteenth-note tempo)))
-(define (dotted-thirtysecond-note tempo)
-  (dotted (thirtysecond-note tempo)))
+(define (dotted-eighth-beat tempo)
+  (dotted (eighth-beat tempo)))
+(define (dotted-sixteenth-beat tempo)
+  (dotted (sixteenth-beat tempo)))
+(define (dotted-thirtysecond-beat tempo)
+  (dotted (thirtysecond-beat tempo)))
 
-(define (double-dotted-whole-note tempo)
-  (double-dotted (whole-note tempo)))
-(define (double-dotted-half-note tempo)
-  (double-dotted (half-note tempo)))
+(define (double-dotted-whole-beat tempo)
+  (double-dotted (whole-beat tempo)))
+(define (double-dotted-half-beat tempo)
+  (double-dotted (half-beat tempo)))
 (define (double-dotted-quarter-note tempo)
   (double-dotted (quarter-note tempo)))
-(define (double-dotted-eighth-note tempo)
-  (double-dotted (eighth-note tempo)))
-(define (double-dotted-sixteenth-note tempo)
-  (double-dotted (sixteenth-note tempo)))
-(define (double-dotted-thirtysecond-note tempo)
-  (double-dotted (thirtysecond-note tempo)))
+(define (double-dotted-eighth-beat tempo)
+  (double-dotted (eighth-beat tempo)))
+(define (double-dotted-sixteenth-beat tempo)
+  (double-dotted (sixteenth-beat tempo)))
+(define (double-dotted-thirtysecond-beat tempo)
+  (double-dotted (thirtysecond-beat tempo)))
 
 ;; Update test to include subdivision
 (define/argcheck (beat-value->fraction

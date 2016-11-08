@@ -44,8 +44,8 @@
           ;; guard is broken
           (for ([v valid-letters])
             (note v 1 quarter-note))
-          (check-exn exn:fail? (lambda () (note 'Jb 2 eighth-note)))
-          (check-exn exn:fail? (lambda () (note 'D 50 eighth-note)))
+          (check-exn exn:fail? (lambda () (note 'Jb 2 eighth-beat)))
+          (check-exn exn:fail? (lambda () (note 'D 50 eighth-beat)))
           (check-exn exn:fail? (lambda ()(note 'A 2 "hi there")))
           ))
 
