@@ -4,6 +4,7 @@
          rsound/single-cycle
          "note.rkt"
          "beat-value.rkt"
+         "harmony.rkt"
          "../define-argcheck.rkt")
 
 (provide (all-defined-out))
@@ -22,7 +23,13 @@
 (define/argcheck (conversion-proc-safety-wrapper 
                    [conversion-proc procedure? "procedure"])
   (lambda (n tempo)
-    (if (rest? n) (silence (beat-value-frames ((note-duration n) tempo)))
+    (cond ((rest? n) (silence (beat-value-frames 
+                                ((note-duration n) tempo))))
+          ((harmony? n) 
+           (rs-overlay*
+             (map (lambda (x)
+                    (conversion-proc x tempo))
+                  (harmony-notes n))))
       (conversion-proc n tempo))))
 
 (define (create-instrument name conversion-proc)
