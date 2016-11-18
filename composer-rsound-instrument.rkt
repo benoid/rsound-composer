@@ -30,7 +30,8 @@
              (map (lambda (x)
                     (conversion-proc x tempo))
                   (harmony-notes n))))
-      (conversion-proc n tempo))))
+         (else 
+           (conversion-proc n tempo)))))
 
 (define (create-instrument name conversion-proc)
   (instrument name (conversion-proc-safety-wrapper conversion-proc)))

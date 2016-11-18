@@ -174,7 +174,8 @@
                               (beat-value->fraction ((note-duration x) 1)))
                             (harmony-notes n))))
                         ((not (note? n))
-                          (error "expected list of type: <#note> | actual: " v )
+                          (error "expected list of type: <#note> | actual: " v ))
+                        (else  
                           (+ (beat-value->fraction ((note-duration n) 1)) v))))
                    0
                    (measure-notes meas))
@@ -195,7 +196,8 @@
                       (beat-value-frames ((note-duration x) tempo))) 
                     (harmony-notes n)))))
             ((not (note? n))
-             0
-             (+ total (beat-value-frames ((note-duration n) tempo))))))
+             0)
+             (else
+               (+ total (beat-value-frames ((note-duration n) tempo))))))
     0
     (measure-notes meas)))
