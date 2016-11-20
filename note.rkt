@@ -43,7 +43,7 @@
 
 (define/argcheck (note-enharm-equal? [note1 note? "note?"]
                                [note2 note? "note?"])
-  (and (note-pitch-equal? note1 note2)
+  (and (note-pitch-enharm-eq? note1 note2)
        (note-duration-equal? note1 note2)))
 
 
