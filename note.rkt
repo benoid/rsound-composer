@@ -31,7 +31,7 @@
                                [note2 note? "note?"])
   (eq? (note-midi-number note1) (note-midi-number note2)))
 
-(define/argcheck (note-letter-enharm-eq? [note1 note? "note?"]
+(define/argcheck (note-pitch-class-enharm-eq? [note1 note? "note?"]
                                [note2 note? "note?"])
   (eq? 
     (note-midi-number (note (note-letter note1) 0 null-beat)) 
