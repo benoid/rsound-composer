@@ -37,7 +37,7 @@
     (note-midi-number (note (note-letter note1) 0 null-beat)) 
     (note-midi-number (note (note-letter note2) 0 null-beat))))
 
-(define/argcheck (note-duration-enharm-eq? [note1 note? "note?"]
+(define/argcheck (note-duration-eq? [note1 note? "note?"]
                                [note2 note? "note?"])
   (eq? (note-duration note1) (note-duration note2)))
 
