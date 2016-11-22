@@ -1,7 +1,7 @@
 #lang racket
 (require "composer-util.rkt"
          "beat-value.rkt"
-         "../define-argcheck.rkt")
+         "define-argcheck.rkt")
 
 (provide (all-defined-out))
 

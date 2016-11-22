@@ -5,7 +5,7 @@
          "note.rkt"
          "beat-value.rkt"
          "harmony.rkt"
-         "../define-argcheck.rkt")
+         "define-argcheck.rkt")
 
 (provide (all-defined-out))
 

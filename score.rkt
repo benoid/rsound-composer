@@ -1,6 +1,6 @@
 #lang racket
 
-(require "../define-argcheck.rkt"
+(require "define-argcheck.rkt"
          "beat-value.rkt"
          "harmony.rkt"
          "note.rkt")

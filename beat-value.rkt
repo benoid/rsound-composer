@@ -1,5 +1,5 @@
 #lang racket
-(require "../define-argcheck.rkt")
+(require "define-argcheck.rkt")
 
 (provide (except-out (all-defined-out)
                      dotted
