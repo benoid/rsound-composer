@@ -26,6 +26,8 @@
               (values letter octave duration)
               (error "<#procedure:note> invalid arguments")))))
 
+(define/argcheck (pitch-class [n note? note])
+  (note-letter-to-base-number (note-letter n)))
 
 (define/argcheck (note->list [n note? note])
   (list
