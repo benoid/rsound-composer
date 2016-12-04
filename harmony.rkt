@@ -213,7 +213,7 @@
           ((eq? token 'vii-dim) (vii-dim))
           ((eq? token 'bVII) (bVII))
           (else
-           (harmony key))))
+           (error "invalid chord symbol: " token))))
   (dispatch roman-numeral))
 
 ;; Alias measure as harmonic-progression 
