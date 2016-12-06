@@ -2,7 +2,7 @@
 
 (require rackunit
          rackunit/text-ui
-         "../composer.rkt")
+         "../composer-base.rkt")
 
 ; Test time signature
 ;
