@@ -1,3 +1,5 @@
+;; This file is borrowed directly from jbclements' RSound package: https://github.com/jbclements/RSound
+
 #lang racket/base
 
 (require (for-syntax syntax/parse
