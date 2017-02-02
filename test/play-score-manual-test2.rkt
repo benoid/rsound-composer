@@ -149,52 +149,8 @@
 
 
 (define scr
-  (score
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect
-    sect))
-
-
+  (score sect sect sect))
+  
 (play-score scr)
 (display "ctl-D to quit")
 (read)
