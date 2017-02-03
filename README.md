@@ -1,7 +1,7 @@
-### rsound/composer
+### rsound/composer - no longer maintained
 
-A music theory abstraction layer for rsound.  Still in development. 
-It's not packaged as a module yet.
+This repository was merged with my fork of RSound, because it depends on specific additions to the RSound source code.
+https://github.com/benoid/RSound
 
-See [test/stream-play-manual-test2.rkt](https://github.com/benoid/rsound-composer/blob/master/test/play-score-manual-test2.rkt) for a 
-feel of how it can be used.  Things are subject to change.
+I'm leaving this repository up because some of my old projects are set up to use it as a submodule.
+
